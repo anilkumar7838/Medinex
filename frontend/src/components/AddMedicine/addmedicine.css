@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap');
+
+.form-container2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vmin;
+    background-color: rgb(248, 225, 228);
+}
+
+.wrapper2{
+  max-width: 500px;
+  width: 100%;
+  background: #fff;
+  margin: 50px auto;
+  /* margin-top:50px; */
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.125);
+  padding: 30px;
+}
+
+.wrapper2 .title{
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 25px;
+  border-bottom: 2px solid black;
+  color: #111;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.wrapper2 .form{
+  width: 100%;
+}
+
+.wrapper2 .form .inputfield{
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.wrapper2 .form .inputfield label{
+   width: 200px;
+   color: #757575;
+   margin-right: 10px;
+  font-size: 14px;
+}
+
+.wrapper2 .form .inputfield .input{
+  width: 100%;
+  outline: none;
+  border: 1px solid #d5dbd9;
+  
+  font-size: 15px;
+  padding: 8px 16px;
+  margin: 0 5px;
+  border-radius: 24px;
+  transition: all 0.3s ease;
+}
+
+
+.wrapper2 .form .inputfield .input:focus{
+  border: 1px solid #fec107;
+}
+
+.wrapper2 .form .inputfield p{
+   font-size: 14px;
+   color: #757575;
+}
+
+
+.wrapper2 .form .inputfield .btn{
+  width: 40%;
+  margin-left: 30%;
+  margin-top: 10%;
+  padding: 8px 10px;
+  font-size: 15px; 
+  border: 0px;
+  background:  #6666ff;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 23px;
+  outline: none;
+}
+
+.wrapper2 .form .inputfield .btn:hover{
+  background: 
+  #9966ff ;
+}
+
+.wrapper2 .form .inputfield:last-child{
+  margin-bottom: 0;
+}
+
+@media (max-width:620px) {
+  .form-container2{
+    height:100vmax;
+  }
+  .wrapper2{
+    max-width: 350px;
+  }
+}
+@media (max-width:420px) {
+  .wrapper2 .form .inputfield{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .wrapper2 .form .inputfield label{
+    margin-bottom: 5px;
+  }
+  .wrapper2 .form .inputfield.terms{
+    flex-direction: row;
+  }
+}

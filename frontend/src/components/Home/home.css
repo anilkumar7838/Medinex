@@ -1,0 +1,154 @@
+.home-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff; 
+}
+
+.bg-img{
+    height: 100vmin;
+}
+/* ----------------------- */
+.content-block{
+    height: 100%;
+    width: 100%;
+    padding-bottom: 24px;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background:linear-gradient(to left,aquamarine,lightcoral); */
+    /* background:rgb(227, 133, 133); */
+    background:rgb(234, 230, 230);
+}
+
+.content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: rgb(29, 29, 36);
+    flex-wrap: wrap;
+    padding: 30px;
+    width:50%;
+    /* height:200px; */
+    border-radius: 24px;
+    color: whitesmoke;
+}
+.content > h1{
+    color:rgb(205, 174, 4);
+    margin-bottom: 12px;
+}
+.content > p{
+    padding: 12px;
+}
+.content-icon{
+    width:70px;
+    height:70px;
+    position: relative;
+    background-color: gold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+}
+.icon1 ,.icon2,.icon3{
+    width:80px;
+    height:80px;
+}
+
+#icon1,#icon3{
+    top:35px;
+    left:-25%;
+}
+#icon2{
+    top:35px;
+    left:25%;
+}
+
+/* ------------------------ */
+
+.feature-icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 350px;
+    width:100%;
+    /* background-color: rgb(196, 191, 191); */
+}
+
+.home-features{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: rgb(29, 29, 36);
+    padding: 12px;
+    margin: 24px;
+    margin-top: 44px;
+    margin-bottom: 44px;
+    width:40%;
+    color: whitesmoke;
+    border-radius: 24px;
+    padding-bottom: 23px;
+    cursor: pointer;
+}
+
+.home-features >img{
+    width:200px;
+    height:200px;
+}
+
+@media screen and (max-width:750px) {
+    .home-features{
+        padding: 1.8vmax;
+        padding-bottom: 34px;
+        margin: 2vmax;
+        margin-top: 44px;
+        margin-bottom: 44px;
+    }
+    
+    .home-features > h2{
+        font-size: 2vmax;
+    }
+    .home-features >img{
+        width:150px;
+        height:150px;
+    }
+}
+@media screen and (max-width:569px) {
+    .content{
+        width:60%;
+        font-size: 1.6vmax;
+    }
+
+    .content > h1{
+        font-size: 2vmax;
+    }
+}
+@media screen and (max-width:455px) {
+    
+    .content > p{
+        font-size: 1.5vmax;
+    }
+
+
+    .feature-icon{
+        flex-direction: column;
+        height: 500px;
+    }
+    
+    .home-features{
+        padding: 1.8vmax;
+        padding-bottom: 34px;
+        margin: 2vmax;
+        margin-top: 1vmax;
+        margin-bottom: 1vmax;
+        width:60%;
+    }
+    .home-features > h2{
+        font-size: 1.6vmax;
+    }
+    
+}
