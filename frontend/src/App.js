@@ -22,8 +22,12 @@ import UpdatePassword from "./components/User/UpdatePassword";
 
 import Register from "./components/User/Register";
 import Animation1 from "./components/utils/Animation/animation1";
+import { useState } from "react";
 
 function App() {
+
+  const [toggle,setToggle]=useState(true);
+
   const publicVapidKey =
     "BFQDJ92ih1ovDk0wIBgGKr5TS4zLwBmXkNZU-B_CeS8W9v1D966aFFwyQpxlgNvOZGudUmrkP2_ISYygWPVpk78";
 
@@ -83,13 +87,21 @@ function App() {
       axios.defaults.headers.common.Authorization = `Bearer ${user}`;
     }
     dataStore.dispatch(loadUser());
-  }, []);
-
+  }, [toggle]);
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/animate" element={<Animation1/>} />
+        {toggle ? (<>
+            <Route path="/" element={<Animation1 />} />
+            {
+            setTimeout(() => {
+              setToggle(false);
+            }, 3000)
+            }
+        </>
+        ) : (
+          <Route path="/" element={<Home />} />
+        )}
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<Loginpage />} />
         <Route path="/register" element={<Register />} />

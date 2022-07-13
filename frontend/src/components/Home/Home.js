@@ -17,7 +17,6 @@ const Home = () => {
   return (
     <>
     <Header/>
-      <Animation1/>
     <div className="home-container">
       <img className="bg-img" src={BgImg} alt="not found" />
       <section className="content-block">
