@@ -102,7 +102,6 @@ function App() {
         ) : (
           <Route path="/" element={<Home />} />
           )}
-          <Route path="/animate" element={<Animation1/>} />
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<Loginpage />} />
         <Route path="/register" element={<Register />} />
