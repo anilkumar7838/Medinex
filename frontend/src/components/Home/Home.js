@@ -10,12 +10,14 @@ import Img5 from "../../assets/1.png";
 import Footer from "../Footer/footer";
 import Header from "../headerComponent/header";
 import { useNavigate } from "react-router-dom";
+import Animation1 from "../utils/Animation/animation1";
 
 const Home = () => {
   const navigate = useNavigate();
   return (
     <>
     <Header/>
+      <Animation1/>
     <div className="home-container">
       <img className="bg-img" src={BgImg} alt="not found" />
       <section className="content-block">

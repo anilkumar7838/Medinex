@@ -53,9 +53,9 @@ let task = cron.schedule("* * * * * *", () => {
   getExpireMedicine();
 });
 
-// setTimeout(() => {
-//   task.stop();
-// }, 1002);
+setTimeout(() => {
+  task.stop();
+}, 1002);
 
 let getExpireMedicine = catchAsyncError(async () => {
   var date = new Date();

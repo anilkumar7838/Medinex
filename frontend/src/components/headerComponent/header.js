@@ -12,7 +12,6 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import { useSelector,useDispatch } from "react-redux";
 import { logout } from "../../actions/userAction";
 import Img from "../../assets/7.png"
-import logo from "../../assets/5.png"
 
 const menu=[
   {
@@ -74,9 +73,8 @@ const Header = () => {
         <div className="inner-width">
           <div className="mainHeading">
             <Link to="/" className="logo">
-              <img src={logo} alt="not-found" />
+              <img src={Img} alt="not-found" />
             </Link>
-            <img src={Img} alt="not found" />
           </div>
           <ClickAwayListener onClickAway={handleClickAway}>
           <div>

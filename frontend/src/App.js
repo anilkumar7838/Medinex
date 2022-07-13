@@ -21,6 +21,7 @@ import ForgotPassword from "./components/User/ForgotPassword";
 import UpdatePassword from "./components/User/UpdatePassword";
 
 import Register from "./components/User/Register";
+import Animation1 from "./components/utils/Animation/animation1";
 
 function App() {
   const publicVapidKey =
@@ -88,6 +89,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/animate" element={<Animation1/>} />
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<Loginpage />} />
         <Route path="/register" element={<Register />} />

@@ -75,6 +75,7 @@
       color: white;
       font-size: 25px;
       border: none;
+      cursor: pointer;
   }
   .login-button{
       padding-top: 25px;

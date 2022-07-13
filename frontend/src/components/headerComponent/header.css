@@ -10,7 +10,7 @@
   position: fixed;
   background-color: none;
   width: 100%;
-  padding: 30px 0;
+  padding: 1.4vmax 0;
   top: 0;
   z-index: 999;
   transition: .3s linear;
@@ -31,9 +31,8 @@
 }
 
 .logo>img{
-  width: 80px;
-  height: 60px;
-  margin-left: -12px;
+  width: 110px;
+  height: 50px;
   margin-right: 12px;
   display: flex;
   align-items: center;
@@ -67,11 +66,6 @@
 }
 .mainHeading>h1{
   margin-left: 12px;
-}
-.mainHeading > img{
-  margin-left: 12px;
-  width:80px;
-  height: 40px;
 }
 .navbar-menu{
     display: flex;
@@ -245,13 +239,9 @@
 }
 
 
-@media screen and (max-width: 300px){
-  .logo>img{
-    width: 9vmax;
-    height: 7vmax;
-  }
-  .mainHeading >img{
-    width: 7vmax;
+@media screen and (max-width: 1020px){
+  .logo > img{
+    width: 12vmax;
     height: 5vmax;
   }
 }
