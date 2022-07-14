@@ -5,9 +5,9 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const webpush = require("web-push");
 const cron = require("node-cron");
-const app = express();
 const User = require("./models/userModel/userSchema");
 const ErrorHandler = require("./utils/errorHandler");
+const app = express();
 
 //
 const moment = require("moment");
@@ -26,6 +26,7 @@ app.use(cors());
 // -----Route Import------
 const userRoute = require("./routes/UserRoute");
 const medRoute = require("./routes/MedicineRoute");
+const { authorizeUser } = require("./middleware/authorizeRole");
 
 // -----Routes-----(v1-> version1)
 app.use("/v1", userRoute);
@@ -44,27 +45,23 @@ webpush.setVapidDetails(
 );
 
 // Subscribe Route
-app.post("/subscribe", async (req, res,next) => {
+app.post("/subscribe",authorizeUser, async (req, res,next) => {
   // Get pushSubscription object
   try {
     const newUserData = {
       subscription: req.body,
     };
 
-
     console.log("inside subscribe");
     console.log(req.body);
     // creating new Schema for Subscribe
 
     // user.id not defined
-    const user = await User.findByIdAndUpdate(req.user.id, newUserData, {
-      new: true,
-      runValidators: true,
-      useFindAndModify: false,
-    });
+    const user = await User.findByIdAndUpdate(req.user.id, newUserData);
     // For First User
+    console.log(user);
     getExpireMedicine();
-    
+    console.log("#");
     // Send 201 - resource created
     res.status(201).json({
       success: true,
@@ -83,7 +80,7 @@ let task = cron.schedule("*/10 * * * * *", () => {
 // stop task till development........
 setTimeout(() => {
   task.stop();
-}, 11000);
+}, 30000);
 
 let getExpireMedicine = catchAsyncError(async () => {
   var date = new Date();

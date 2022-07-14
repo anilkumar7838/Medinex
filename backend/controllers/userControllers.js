@@ -8,12 +8,14 @@ const { getExpireMedicine } = require("../app");
 //------- Register User -----------
 exports.registerUser = catchAsyncError(async(req,res,next)=>{
 
-    const {name,email,password,phone,dob,gender,address,country,state,city}=req.body;
+    const {firstname,lastname,email,password,phone,dob,gender,address,country,state,city}=req.body;
     // form-type not used now  
-
+    
+    const name=String(firstname+" "+lastname);
+    console.log(name);
     const user=await User.create({
-        name,
         email,
+        name,
         password,
         phone,
         dob,
@@ -165,7 +167,7 @@ exports.updateProfile = catchAsyncError(async(req,res,next)=>{
 
 // ----------- Get User Details ----------
 exports.getUserDetails = catchAsyncError(async(req,res,next)=>{
-    const user = await User.findById(req.user.id);
+    const user =await User.findById(req.user.id);
     // console.log(user);
     res.status(200).json({
         success:true,
@@ -225,3 +227,22 @@ exports.getReview =catchAsyncError(async(req,res,next)=>{
         return next(new ErrorHandler(error.message,500));
     }
 });
+
+// Subscribe Route
+// exports.userSubscription=catchAsyncError(async(req,res,next)=>{
+
+//     try{
+
+//         const newUserData={
+//             subscription:req.body
+//         }
+//         console.log(req.user.id);
+//         const user = await User.findByIdAndUpdate(req.user.id,newUserData,{new:true,runValidators:true,useFindAndModify:false});
+//         getExpireMedicine();
+//         res.status(200).json({
+//             success:true,
+//         })
+//     }catch(error){
+//         return next(new ErrorHandler(error.message,500));
+//     }
+// });

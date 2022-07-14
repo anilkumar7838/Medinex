@@ -52,13 +52,11 @@ function App() {
       userVisibleOnly: true,
       applicationServerKey: urlBase64ToUint8Array(publicVapidKey),
     });
-    // console.log("Push Registered...");
+    console.log("Push Registered...");
 
     // Send Push Notification
-    // console.log("Sending Push...");
-    
-    await fetch("/subscribe", {
-      method: "POST",
+    console.log("Sending Push...");
+    await axios.post("/subscribe", {
       body: JSON.stringify(subscription),
       headers: {
         "content-type": "application/json",

@@ -9,11 +9,13 @@ const {
   updateProfile,
   getUserDetails,
   getReview,
+  // userSubscription,
 } = require("../controllers/userControllers");
 
 const { authorizeUser } = require("../middleware/authorizeRole");
 const router = express.Router();
 
+// router.route("/subscribe").post(authorizeUser,userSubscription);
 router.route("/contact").post(getReview);
 router.route("/register").post(registerUser);
 router.route("/login").post(loginUser);
