@@ -49,19 +49,16 @@ app.post("/subscribe",authorizeUser, async (req, res,next) => {
   // Get pushSubscription object
   try {
     const newUserData = {
-      subscription: req.body,
+      subscription: req.body.endpoint,
     };
 
     console.log("inside subscribe");
-    console.log(req.body);
-    // creating new Schema for Subscribe
 
     // user.id not defined
     const user = await User.findByIdAndUpdate(req.user.id, newUserData);
     // For First User
-    console.log(user);
     getExpireMedicine();
-    console.log("#");
+  
     // Send 201 - resource created
     res.status(201).json({
       success: true,
@@ -78,9 +75,9 @@ let task = cron.schedule("*/10 * * * * *", () => {
 });
 
 // stop task till development........
-setTimeout(() => {
-  task.stop();
-}, 30000);
+// setTimeout(() => {
+//   task.stop();
+// }, 30000);
 
 let getExpireMedicine = catchAsyncError(async () => {
   var date = new Date();
@@ -94,15 +91,18 @@ let getExpireMedicine = catchAsyncError(async () => {
   //Email
   const user = await User.find();
   
-  for (var curr = 0; curr < user.length; curr++) {
+  for (let curr = 1; curr < user.length; curr++) {
     try {
       let subs = user[curr].subscription;
+      console.log(subs);
       if (subs) {
         // Pass object into sendNotification
         const payload = JSON.stringify({ title: "Medinex", body: String(str) });
 
+        console.log("push sent");
+
         webpush
-          .sendNotification(subs, payload)
+          .sendNotification(JSON.stringify(subs), payload)
           .catch((err) => console.error(err));
       }
       // console.log(user[curr].email);

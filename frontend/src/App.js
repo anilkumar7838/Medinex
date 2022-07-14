@@ -57,7 +57,7 @@ function App() {
     // Send Push Notification
     console.log("Sending Push...");
     await axios.post("/subscribe", {
-      body: JSON.stringify(subscription),
+      body: subscription,
       headers: {
         "content-type": "application/json",
       },

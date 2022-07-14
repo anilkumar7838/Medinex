@@ -59,11 +59,13 @@ const userSchema = mongoose.Schema({
         default:Date.now,
     },
     subscription:{
-        type:String,
+        type:Object,
+        default:null,
     },
     resetPasswordToken: String,
     resetPasswordExpire: Date,
-});
+}
+);
 
 userSchema.pre("save",async function(next){
 
