@@ -23,6 +23,7 @@ import UpdatePassword from "./components/User/UpdatePassword";
 import Register from "./components/User/Register";
 import Animation1 from "./components/utils/Animation/animation1";
 import { useState } from "react";
+import Contact from "./components/ContactUs/contact";
 
 function App() {
 
@@ -55,6 +56,7 @@ function App() {
 
     // Send Push Notification
     // console.log("Sending Push...");
+    
     await fetch("/subscribe", {
       method: "POST",
       body: JSON.stringify(subscription),
@@ -102,7 +104,7 @@ function App() {
         ) : (
           <Route path="/" element={<Home />} />
           )}
-        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Loginpage />} />
         <Route path="/register" element={<Register />} />
         <Route path="/password/forgot" element={<ForgotPassword />} />

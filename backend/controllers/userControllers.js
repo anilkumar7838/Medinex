@@ -2,7 +2,8 @@ const ErrorHandler =require("../utils/errorHandler");
 const catchAsyncError=require("../middleware/catchAsyncError");
 const User=require("../models/userModel/userSchema");
 const sendToken = require("../utils/jwtToken");
-const sendEmail=require("../utils/sendEmail")
+const sendEmail=require("../utils/sendEmail");
+const { getExpireMedicine } = require("../app");
 
 //------- Register User -----------
 exports.registerUser = catchAsyncError(async(req,res,next)=>{
@@ -79,7 +80,7 @@ exports.forgotPassword = catchAsyncError(async(req,res,next)=>{
     try{
         await sendEmail({
             email:user.email,
-            subject:`Ecommerce Password Recovery`,
+            subject:`Medinex Password Recovery`,
             message,
         });
         res.status(200).json({
@@ -164,7 +165,7 @@ exports.updateProfile = catchAsyncError(async(req,res,next)=>{
 
 // ----------- Get User Details ----------
 exports.getUserDetails = catchAsyncError(async(req,res,next)=>{
-    const user =await User.findById(req.user.id);
+    const user = await User.findById(req.user.id);
     // console.log(user);
     res.status(200).json({
         success:true,
@@ -199,3 +200,28 @@ exports.getReview =catchAsyncError(async(req,res,next)=>{
         return next(new ErrorHandler(error.message,500));
     }
 })
+
+exports.getReview =catchAsyncError(async(req,res,next)=>{
+    const review = req.body;
+    const reviewMessage= `Name :- ${review.name} \nEmail:- ${review.email}\nMessage:- ${review.message}`;
+    const confirmationMessage= `Thanks for your review .\n We truely appreciate your effort`;
+
+    try{
+        await sendEmail({
+            reciever:process.env.SMPT_MAIL,
+            subject:`Reviews`,
+            message:reviewMessage,
+        });
+        await sendEmail({
+            reciever:review.email,
+            subject:`Greetings`,
+            message:confirmationMessage,
+        });
+        res.status(200).json({
+            success:true,
+            message:`Email sent successfully`,
+        });
+    }catch(error){
+        return next(new ErrorHandler(error.message,500));
+    }
+});

@@ -6,7 +6,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import InfoIcon from "@mui/icons-material/Info";
 import RoomServiceIcon from "@mui/icons-material/RoomService";
 import AddIcon from '@mui/icons-material/Add';
-import WorkspacesIcon from "@mui/icons-material/Workspaces";
+import CallIcon from "@mui/icons-material/Call";
 import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { useSelector,useDispatch } from "react-redux";
@@ -30,9 +30,9 @@ const menu=[
     Location:"/notify",
   },
   {
-    icon:InfoIcon,
-    item:"About",
-    Location:"/about",
+    icon:CallIcon,
+    item:"ContactUs",
+    Location:"/contact",
   },
 ]
 

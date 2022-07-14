@@ -27,13 +27,7 @@ const AddMedicine = () => {
   const medicineSubmit = (e) => {
     e.preventDefault();
     dispatch(addMedicine(data));
-    if (medicineResponse.success) {
-      alert.success("Medicine Added Successfully");
-
-      setTimeout(() => {
-        medicineResponse.success = false;
-      }, 4000);
-    }
+    alert.success("Medicine Added Successfully");
   };
 
   const registerDataChange = (e) => {
