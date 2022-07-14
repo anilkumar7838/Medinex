@@ -27,6 +27,7 @@ app.use(cors());
 const userRoute = require("./routes/UserRoute");
 const medRoute = require("./routes/MedicineRoute");
 const { authorizeUser } = require("./middleware/authorizeRole");
+const sendEmail = require("./utils/sendEmail");
 
 // -----Routes-----(v1-> version1)
 app.use("/v1", userRoute);
@@ -91,8 +92,7 @@ let getExpireMedicine = catchAsyncError(async () => {
   //Email
   const user = await User.find();
   
-  for (let curr = 1; curr < user.length; curr++) {
-    try {
+  for (let curr = 0; curr < user.length; curr++) {
       let subs = user[curr].subscription;
       console.log(subs);
       if (subs) {
@@ -106,18 +106,15 @@ let getExpireMedicine = catchAsyncError(async () => {
           .catch((err) => console.error(err));
       }
       // console.log(user[curr].email);
-      await sendEmail({
-        reciever: user[curr].email,
-        subject: `Medinex`,
-        message: str,
-      });
-      res.status(200).json({
-        success: true,
-        message: `Email sent successfully`,
-      });
-    } catch (error) {
-      return new ErrorHandler(error.message, 500);
-    }
+      // await sendEmail({
+      //   reciever: user[curr].email,
+      //   subject: `Medinex`,
+      //   message: str,
+      // });
+      // res.status(200).json({
+      //   success: true,
+      //   message: `Email sent successfully`,
+      // });
   }
 });
 
