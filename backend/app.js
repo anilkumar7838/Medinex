@@ -9,12 +9,9 @@ const User = require("./models/userModel/userSchema");
 const ErrorHandler = require("./utils/errorHandler");
 const app = express();
 
-//
 const moment = require("moment");
 const catchAsyncError = require("./middleware/catchAsyncError");
 const Medicine = require("./models/MedicineModel/medicineSchema");
-
-//
 
 // -----for Json to pass as argument----
 app.use(cookieParser());
@@ -29,7 +26,7 @@ const medRoute = require("./routes/MedicineRoute");
 const { authorizeUser } = require("./middleware/authorizeRole");
 const sendEmail = require("./utils/sendEmail");
 
-// -----Routes-----(v1-> version1)
+// -----Routes-----
 app.use("/v1", userRoute);
 app.use("/v1", medRoute);
 
@@ -50,10 +47,8 @@ app.post("/subscribe",authorizeUser, async (req, res,next) => {
   // Get pushSubscription object
   try {
     const newUserData = {
-      subscription: req.body.endpoint,
+      subscription: req.body,
     };
-
-    console.log("inside subscribe");
 
     // user.id not defined
     const user = await User.findByIdAndUpdate(req.user.id, newUserData);
@@ -70,7 +65,7 @@ app.post("/subscribe",authorizeUser, async (req, res,next) => {
 });
 
 // scheduler
-let task = cron.schedule("*/10 * * * * *", () => {
+let task = cron.schedule("0 0 0 */1 * *", () => {
   console.log("minute...");
   getExpireMedicine();
 });
@@ -94,27 +89,25 @@ let getExpireMedicine = catchAsyncError(async () => {
   
   for (let curr = 0; curr < user.length; curr++) {
       let subs = user[curr].subscription;
-      console.log(subs);
+      
       if (subs) {
         // Pass object into sendNotification
         const payload = JSON.stringify({ title: "Medinex", body: String(str) });
 
-        console.log("push sent");
-
         webpush
-          .sendNotification(JSON.stringify(subs), payload)
+          .sendNotification(subs.body, payload)
           .catch((err) => console.error(err));
       }
-      // console.log(user[curr].email);
-      // await sendEmail({
-      //   reciever: user[curr].email,
-      //   subject: `Medinex`,
-      //   message: str,
-      // });
-      // res.status(200).json({
-      //   success: true,
-      //   message: `Email sent successfully`,
-      // });
+      
+      await sendEmail({
+        reciever: user[curr].email,
+        subject: `Medinex`,
+        message: str,
+      });
+      res.status(200).json({
+        success: true,
+        message: `Email sent successfully`,
+      });
   }
 });
 

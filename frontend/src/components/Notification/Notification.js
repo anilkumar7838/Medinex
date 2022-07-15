@@ -34,16 +34,16 @@ const Notification = () => {
         <>
           <Header />
           <form className="form-container3">
-            <div class="wrapper3">
-              <div class="title">Notification's</div>
-              <div class="form">
+            <div className="wrapper3">
+              <div className="title">Notification's</div>
+              <div className="form">
                 {medicineResponse.medicines && medicineResponse.medicines.map((res, i) => {
                       return (
                         <>
-                          <div class="inputfield">
+                          <div className="inputfield">
                             <input
                               type="text"
-                              class="input"
+                              className="input"
                               style={{ backgroundColor: "#ccff33" }}
                               name="name"
                               value={res.name}

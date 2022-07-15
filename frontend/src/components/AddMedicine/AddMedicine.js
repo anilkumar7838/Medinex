@@ -53,15 +53,15 @@ const AddMedicine = () => {
         <>
           <Header />
           <form className="form-container2" onSubmit={medicineSubmit}>
-            <div class="wrapper2">
-              <div class="title">Add Medicine</div>
-              <div class="form">
+            <div className="wrapper2">
+              <div className="title">Add Medicine</div>
+              <div className="form">
                 <label>Medicine Name</label>
-                <div class="inputfield">
+                <div className="inputfield">
                   <input
                     type="text"
                     placeholder="First Name"
-                    class="input"
+                    className="input"
                     style={{ backgroundColor: "#e6f7ff" }}
                     name="name"
                     value={name}
@@ -70,11 +70,11 @@ const AddMedicine = () => {
                 </div>
 
                 <label>Company</label>
-                <div class="inputfield">
+                <div className="inputfield">
                   <input
                     type="text"
                     placeholder="Cipla"
-                    class="input"
+                    className="input"
                     style={{ backgroundColor: "#ccff33" }}
                     name="company"
                     value={company}
@@ -83,10 +83,10 @@ const AddMedicine = () => {
                 </div>
 
                 <label>Date of Expiry</label>
-                <div class="inputfield">
+                <div className="inputfield">
                   <input
                     type="date"
-                    class="input"
+                    className="input"
                     style={{ backgroundColor: "#ffe6ff" }}
                     name="doe"
                     value={doe}
@@ -94,8 +94,8 @@ const AddMedicine = () => {
                   />
                 </div>
 
-                <div class="inputfield">
-                  <input type="submit" value="+ Add" class="btn" />
+                <div className="inputfield">
+                  <input type="submit" value="+ Add" className="btn" />
                 </div>
               </div>
             </div>

@@ -57,15 +57,15 @@ const Register = () => {
         <>
           <Header />
           <form className="form-container" onSubmit={registerSubmit}>
-            <div class="wrapper">
-              <div class="title">Registration Form</div>
-              <div class="form">
+            <div className="wrapper">
+              <div className="title">Registration Form</div>
+              <div className="form">
                 <label>Name</label>
-                <div class="inputfield">
+                <div className="inputfield">
                   <input
                     type="text"
                     placeholder="First Name"
-                    class="input"
+                    className="input"
                     style={{ backgroundColor: "#e6f7ff" }}
                     name="firstname"
                     value={firstname}
@@ -74,7 +74,7 @@ const Register = () => {
                   <input
                     type="text"
                     placeholder="Last Name"
-                    class="input"
+                    className="input"
                     style={{ backgroundColor: "#e6f7ff" }}
                     name="lastname"
                     value={lastname}
@@ -83,17 +83,17 @@ const Register = () => {
                 </div>
 
                 <label>Phone Number</label>
-                <div class="inputfield">
+                <div className="inputfield">
                   <input
                     type="text"
                     value="+91"
-                    class="input"
+                    className="input"
                     style={{ backgroundColor: "#ccff33", width: "15%" }}
                   />
                   <input
                     type="text"
                     placeholder="98765-43210"
-                    class="input"
+                    className="input"
                     style={{ backgroundColor: "lightgrey" }}
                     name="phone"
                     value={phone}
@@ -102,11 +102,11 @@ const Register = () => {
                 </div>
 
                 <label>Email Address</label>
-                <div class="inputfield">
+                <div className="inputfield">
                   <input
                     type="text"
                     placeholder="gaurav@gmail.com"
-                    class="input"
+                    className="input"
                     style={{ backgroundColor: "#ccff33" }}
                     name="email"
                     value={email}
@@ -118,7 +118,7 @@ const Register = () => {
                   <input
                     type="password"
                     placeholder="Password"
-                    class="input"
+                    className="input"
                     style={{ backgroundColor: "#e6f7ff" }}
                     name="password"
                     value={password}
@@ -130,7 +130,7 @@ const Register = () => {
                 <div class="inputfield">
                   <input
                     type="date"
-                    class="input"
+                    className="input"
                     style={{ backgroundColor: "#ffe6ff" }}
                     name="dob"
                     value={dob}
@@ -139,8 +139,8 @@ const Register = () => {
                 </div>
 
                 <label>Gender</label>
-                <div class="inputfield">
-                  <div class="custom_select">
+                <div className="inputfield">
+                  <div className="custom_select">
                     <select style={{ backgroundColor: "#ffe6ff" }}
                     name="gender"
                     value={gender}
@@ -153,20 +153,20 @@ const Register = () => {
                 </div>
 
                 <label>Residence Address</label>
-                <div class="inputfield">
+                <div className="inputfield">
                   <textarea
                     style={{ backgroundColor: "#ffcce0" }}
-                    class="textarea"
+                    className="textarea"
                     name="address"
                     value={address}
                     onChange={registerDataChange}
                   ></textarea>
                 </div>
-                <div class="inputfield">
+                <div className="inputfield">
                   <input
                     type="text"
                     placeholder="Country"
-                    class="input"
+                    className="input"
                     style={{ backgroundColor: "#ffe6ff" }}
                     name="country"
                     value={country}
@@ -174,7 +174,7 @@ const Register = () => {
                   />
                   <input
                     type="text"
-                    class="input"
+                    className="input"
                     style={{ backgroundColor: "#ffe6ff" }}
                     name="state"
                     value={state}
@@ -183,7 +183,7 @@ const Register = () => {
                   />
                   <input
                     type="text"
-                    class="input"
+                    className="input"
                     style={{ backgroundColor: "#ffe6ff" }}
                     name="city"
                     value={city}
@@ -192,8 +192,8 @@ const Register = () => {
                   />
                 </div>
 
-                <div class="inputfield">
-                  <input type="submit" value="Register" class="btn" />
+                <div className="inputfield">
+                  <input type="submit" value="Register" className="btn" />
                 </div>
               </div>
             </div>
