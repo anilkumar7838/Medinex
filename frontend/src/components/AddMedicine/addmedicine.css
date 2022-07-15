@@ -4,7 +4,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 830px;
+    height: 100vmin;
     background-color: rgb(248, 225, 228);
 }
 
@@ -91,7 +91,7 @@
   margin-bottom: 0;
 }
 
-@media (max-width:620px) {
+@media (max-width:820px) {
   .form-container2{
     height:100vmax;
   }
