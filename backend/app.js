@@ -42,38 +42,6 @@ webpush.setVapidDetails(
   privateVapidKey
 );
 
-// Subscribe Route
-app.post("/subscribe",authorizeUser, async (req, res,next) => {
-  // Get pushSubscription object
-  try {
-    const newUserData = {
-      subscription: req.body,
-    };
-
-    // user.id not defined
-    const user = await User.findByIdAndUpdate(req.user.id, newUserData);
-    // For First User
-    getExpireMedicine();
-  
-    // Send 201 - resource created
-    res.status(201).json({
-      success: true,
-    });
-  } catch (error) {
-    return next(new ErrorHandler(error.message, 500));
-  }
-});
-
-// scheduler
-let task = cron.schedule("0 0 0 */1 * *", () => {
-  console.log("minute...");
-  getExpireMedicine();
-});
-
-// stop task till development........
-// setTimeout(() => {
-//   task.stop();
-// }, 30000);
 
 let getExpireMedicine = catchAsyncError(async () => {
   var date = new Date();
@@ -110,6 +78,41 @@ let getExpireMedicine = catchAsyncError(async () => {
       });
   }
 });
+
+// Subscribe Route
+app.post("/subscribe",authorizeUser, async (req, res,next) => {
+  // Get pushSubscription object
+  try {
+    const newUserData = {
+      subscription: req.body,
+    };
+
+    // user.id not defined
+    const user = await User.findByIdAndUpdate(req.user.id, newUserData);
+    // For First User
+    getExpireMedicine();
+  
+    // Send 201 - resource created
+    res.status(201).json({
+      success: true,
+    });
+  } catch (error) {
+    return next(new ErrorHandler(error.message, 500));
+  }
+});
+
+// scheduler
+let task = cron.schedule("0 0 0 */1 * *", () => {
+  console.log("minute...");
+  getExpireMedicine();
+});
+
+// stop task till development........
+// setTimeout(() => {
+//   task.stop();
+// }, 30000);
+
+
 
 // ----- Middleware Error Handling---
 app.use(ErrorMiddleware);
