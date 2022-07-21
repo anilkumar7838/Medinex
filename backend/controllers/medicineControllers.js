@@ -1,10 +1,10 @@
 const ErrorHandler =require("../utils/errorHandler");
-const catchAsyncError=require("../middleware/catchAsyncError");
+const CatchAsyncError=require("../middleware/CatchAsyncError");
 const Medicine=require("../models/MedicineModel/medicineSchema");
 const sendEmail=require("../utils/sendEmail")
 
 //------- Add Medicine -----------
-exports.AddMedicine = catchAsyncError(async(req,res,next)=>{
+exports.AddMedicine = CatchAsyncError(async(req,res,next)=>{
 
     const {name,company,doe}=req.body;
 
@@ -21,7 +21,7 @@ exports.AddMedicine = catchAsyncError(async(req,res,next)=>{
 });
 
 //------- Get Medicine -----------
-exports.getMedicine = catchAsyncError(async(req,res,next)=>{
+exports.getMedicine = CatchAsyncError(async(req,res,next)=>{
 
     const med =await Medicine.find();
 

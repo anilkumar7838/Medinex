@@ -1,12 +1,12 @@
 const ErrorHandler =require("../utils/errorHandler");
-const catchAsyncError=require("../middleware/catchAsyncError");
+const CatchAsyncError=require("../middleware/CatchAsyncError");
 const User=require("../models/userModel/userSchema");
 const sendToken = require("../utils/jwtToken");
 const sendEmail=require("../utils/sendEmail");
 const { getExpireMedicine } = require("../app");
 
 //------- Register User -----------
-exports.registerUser = catchAsyncError(async(req,res,next)=>{
+exports.registerUser = CatchAsyncError(async(req,res,next)=>{
 
     const {firstname,lastname,email,password,phone,dob,gender,address,country,state,city}=req.body;
     // form-type not used now  
@@ -29,7 +29,7 @@ exports.registerUser = catchAsyncError(async(req,res,next)=>{
 });
 
 // ------- Login User --------
-exports.loginUser = catchAsyncError(async(req,res,next)=>{
+exports.loginUser = CatchAsyncError(async(req,res,next)=>{
     const {email,password}=req.body;
     // cheacking if user given Password and email both
     if(!email ||!password){
@@ -54,7 +54,7 @@ exports.loginUser = catchAsyncError(async(req,res,next)=>{
 })
 
 // -------------- Logout User ---------------------
-exports.logout = catchAsyncError(async(req,res,next)=>{
+exports.logout = CatchAsyncError(async(req,res,next)=>{
     res.status(200).json({
         success:true,
         message:"Logged Out",
@@ -63,7 +63,7 @@ exports.logout = catchAsyncError(async(req,res,next)=>{
 
 // ------------- Forgot Password -----------------
 
-exports.forgotPassword = catchAsyncError(async(req,res,next)=>{
+exports.forgotPassword = CatchAsyncError(async(req,res,next)=>{
     const user=await User.findOne({email:req.body.email});
     if(!user){
         return next(new ErrorHandler("User not found",404));
@@ -74,8 +74,8 @@ exports.forgotPassword = catchAsyncError(async(req,res,next)=>{
 
     await user.save({validateBeforeSave:false});
 
-    // const resetPasswordUrl = `${req.protocol}://${req.get("host")}/password/reset/${resetToken}`
-    const resetPasswordUrl = `${process.env.FRONTEND_URL}://${req.get("host")}/password/reset/${resetToken}`
+    const resetPasswordUrl = `${req.protocol}://${req.get("host")}/password/reset/${resetToken}`
+    // const resetPasswordUrl = `${process.env.FRONTEND_URL}://${req.get("host")}/password/reset/${resetToken}`
 
     const message = `Your password reset token is :- \n\n ${resetPasswordUrl} \n\n If you have not requested this email then please ignore it `;
 
@@ -102,7 +102,7 @@ exports.forgotPassword = catchAsyncError(async(req,res,next)=>{
 
 // ------------ Reset Password ------------
 
-exports.resetPassword = catchAsyncError(async(req,res,next)=>{
+exports.resetPassword = CatchAsyncError(async(req,res,next)=>{
     // creating token hash
     const resetPasswordToken = crypto.createHash("sha256").update(req.params.Token).digest("hex");
 
@@ -130,7 +130,7 @@ exports.resetPassword = catchAsyncError(async(req,res,next)=>{
 
 // ----------- Update User password ------------
 
-exports.updatePassword = catchAsyncError(async(req,res,next)=>{
+exports.updatePassword = CatchAsyncError(async(req,res,next)=>{
     const user =await User.findById(req.user.id).select("+password");
     
     const isPasswordMatched = await user.comparePassword(req.body.oldPassword);
@@ -152,7 +152,7 @@ exports.updatePassword = catchAsyncError(async(req,res,next)=>{
 
 // ---------- Update User Profile ----------
 
-exports.updateProfile = catchAsyncError(async(req,res,next)=>{
+exports.updateProfile = CatchAsyncError(async(req,res,next)=>{
     const newUserData={
         name:req.body.name,
         email:req.body.email,
@@ -166,7 +166,7 @@ exports.updateProfile = catchAsyncError(async(req,res,next)=>{
 })
 
 // ----------- Get User Details ----------
-exports.getUserDetails = catchAsyncError(async(req,res,next)=>{
+exports.getUserDetails = CatchAsyncError(async(req,res,next)=>{
     const user =await User.findById(req.user.id);
     // console.log(user);
     res.status(200).json({
@@ -178,7 +178,7 @@ exports.getUserDetails = catchAsyncError(async(req,res,next)=>{
 
 // --------------- send Email ------------
 
-exports.getReview =catchAsyncError(async(req,res,next)=>{
+exports.getReview =CatchAsyncError(async(req,res,next)=>{
     const review = req.body;
     const reviewMessage= `Name :- ${review.name} \nEmail:- ${review.email}\nMessage:- ${review.message}`;
     const confirmationMessage= `Thanks for your review .\n We truely appreciate your effort`;
@@ -203,7 +203,7 @@ exports.getReview =catchAsyncError(async(req,res,next)=>{
     }
 })
 
-exports.getReview =catchAsyncError(async(req,res,next)=>{
+exports.getReview =CatchAsyncError(async(req,res,next)=>{
     const review = req.body;
     const reviewMessage= `Name :- ${review.name} \nEmail:- ${review.email}\nMessage:- ${review.message}`;
     const confirmationMessage= `Thanks for your review .\n We truely appreciate your effort`;
@@ -229,7 +229,7 @@ exports.getReview =catchAsyncError(async(req,res,next)=>{
 });
 
 // Subscribe Route
-// exports.userSubscription=catchAsyncError(async(req,res,next)=>{
+// exports.userSubscription=CatchAsyncError(async(req,res,next)=>{
 
 //     try{
 

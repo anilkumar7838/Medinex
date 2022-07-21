@@ -10,7 +10,7 @@ const ErrorHandler = require("./utils/errorHandler");
 const app = express();
 
 const moment = require("moment");
-const catchAsyncError = require("./middleware/catchAsyncError");
+const CatchAsyncError = require("./middleware/CatchAsyncError");
 const Medicine = require("./models/MedicineModel/medicineSchema");
 
 // -----for Json to pass as argument----
@@ -41,43 +41,6 @@ webpush.setVapidDetails(
   publicVapidKey,
   privateVapidKey
 );
-
-
-let getExpireMedicine = catchAsyncError(async () => {
-  var date = new Date();
-  var formattedDate = moment(date).format("YYYY-MM-DD");
-  let med = await Medicine.find({ doe: String(formattedDate) });
-  let str = "Today Expired Medicines are: \n";
-  for (var i = 0; i < med.length; i++) {
-    str = str + `${med[i].name} manufactured by ${med[i].company} \n`;
-  }
-
-  //Email
-  const user = await User.find();
-  
-  for (let curr = 0; curr < user.length; curr++) {
-      let subs = user[curr].subscription;
-      
-      if (subs) {
-        // Pass object into sendNotification
-        const payload = JSON.stringify({ title: "Medinex", body: String(str) });
-
-        webpush
-          .sendNotification(subs.body, payload)
-          .catch((err) => console.error(err));
-      }
-      
-      await sendEmail({
-        reciever: user[curr].email,
-        subject: `Medinex`,
-        message: str,
-      });
-      res.status(200).json({
-        success: true,
-        message: `Email sent successfully`,
-      });
-  }
-});
 
 // Subscribe Route
 app.post("/subscribe",authorizeUser, async (req, res,next) => {
@@ -112,7 +75,41 @@ let task = cron.schedule("0 0 0 */1 * *", () => {
 //   task.stop();
 // }, 30000);
 
+let getExpireMedicine = CatchAsyncError(async () => {
+  var date = new Date();
+  var formattedDate = moment(date).format("YYYY-MM-DD");
+  let med = await Medicine.find({ doe: String(formattedDate) });
+  let str = "Today Expired Medicines are: \n";
+  for (var i = 0; i < med.length; i++) {
+    str = str + `${med[i].name} manufactured by ${med[i].company} \n`;
+  }
 
+  //Email
+  const user = await User.find();
+  
+  for (let curr = 0; curr < user.length; curr++) {
+      let subs = user[curr].subscription;
+      
+      if (subs) {
+        // Pass object into sendNotification
+        const payload = JSON.stringify({ title: "Medinex", body: String(str) });
+
+        webpush
+          .sendNotification(subs.body, payload)
+          .catch((err) => console.error(err));
+      }
+      
+      await sendEmail({
+        reciever: user[curr].email,
+        subject: `Medinex`,
+        message: str,
+      });
+      res.status(200).json({
+        success: true,
+        message: `Email sent successfully`,
+      });
+  }
+});
 
 // ----- Middleware Error Handling---
 app.use(ErrorMiddleware);

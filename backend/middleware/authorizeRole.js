@@ -1,9 +1,9 @@
-const ErrorHandler = require("../utils/errorhandler");
-const catchAsyncError = require("./CatchAsyncError")
+const ErrorHandler = require("../utils/errorHandler");
+const CatchAsyncError = require("./CatchAsyncError")
 const jwt = require("jsonwebtoken");
 const User = require("../models/userModel/userSchema");
 
-exports.authorizeUser = catchAsyncError(async (req,res,next) => {
+exports.authorizeUser = CatchAsyncError(async (req,res,next) => {
     // console.log(req.headers.authorization);
     if(req.headers.authorization){
         const token = req.headers.authorization.split(" ")[1];
