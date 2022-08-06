@@ -3,7 +3,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #fff;
+    /* background-color: #fff; */
+    background-color: #d7f2f7;
     height: 100%;
     width: 100%;
 }
@@ -22,7 +23,7 @@
     justify-content: center;
     /* background:linear-gradient(to left,aquamarine,lightcoral); */
     /* background:rgb(227, 133, 133); */
-    background:rgb(234, 230, 230);
+    background-color: #d7f2f7;
 }
 
 .content{
@@ -77,6 +78,7 @@
     align-items: center;
     height: 350px;
     width:100%;
+    background-color: #d7f2f7;
     /* background-color: rgb(196, 191, 191); */
 }
 

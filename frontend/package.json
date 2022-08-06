@@ -43,7 +43,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "winBuild": "set \"GENERATE_SOURCEMAP=false\" && react-scripts build -prod -minifyjs -minifycss -optimizejs"
   },
   "eslintConfig": {
     "extends": [
@@ -62,6 +63,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "proxy": "http://3.110.185.62/"
+  }
+  
 }
