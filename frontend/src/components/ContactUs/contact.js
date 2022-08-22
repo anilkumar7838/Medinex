@@ -66,7 +66,7 @@ const Contact = React.forwardRef((props,ref)=>{
             </div>
             <div className="text">
               <h3>Address</h3>
-              <p>C-1/35 Dwarka sec-16,New Delhi</p>
+              <p>Sgt University gurugram</p>
             </div>
           </div>
           <div className="contact-box">
