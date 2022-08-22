@@ -17,7 +17,7 @@ const Footer = () => {
               <h4>Address</h4>
               <ul>
                 <li>
-                  <Link to="/">123 Anywhere St., Any City</Link>
+                  <Link to="/">Sgt University gurugram</Link>
                 </li>
               </ul>
             </div>
